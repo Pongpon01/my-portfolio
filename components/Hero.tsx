@@ -24,12 +24,14 @@ export default function Hero() {
             </span>
           </div>
 
-          <h1 className="text-6xl sm:text-8xl xl:text-[112px] font-extrabold tracking-tight leading-[0.95] text-white">
+          {/* แก้: ย่อขนาดตามความกว้างจอมือถือด้วย clamp() (จอ sm ขึ้นไปเหมือนเดิม) */}
+          <h1 className="text-[length:clamp(2.5rem,15vw,3.75rem)] sm:text-8xl xl:text-[112px] font-extrabold tracking-tight leading-[0.95] text-white">
             Pongphon
           </h1>
+          {/* แก้: นามสกุลไม่ล้นขอบขวาบนมือถือ */}
           <h2
             style={{ fontFamily: "var(--font-serif)" }}
-            className="text-6xl sm:text-8xl xl:text-[108px] italic font-normal tracking-wide text-slate-200 leading-[0.95] pt-2"
+            className="text-[length:clamp(2.25rem,11vw,3.75rem)] sm:text-8xl xl:text-[108px] italic font-normal tracking-wide text-slate-200 leading-[0.95] pt-2"
           >
             Sriboonrueng
             <span className="font-sans not-italic font-thin text-blue-400 ml-1">
