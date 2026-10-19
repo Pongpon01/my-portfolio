@@ -1,3 +1,4 @@
+//แก้ไขแล้ว
 // data/portfolioData.ts
 import {
   SiNextdotjs,
