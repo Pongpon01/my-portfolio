@@ -331,9 +331,6 @@ export default function Projects() {
                       className="w-full h-full object-cover"
                     />
                   )}
-                  <span className="pointer-events-none absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md text-[11px] font-mono text-slate-200 border border-white/10">
-                    {vid.duration}
-                  </span>
                 </div>
 
                 <div className="p-7">
