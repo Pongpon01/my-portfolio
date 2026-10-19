@@ -1,4 +1,4 @@
-
+// data/portfolioData.ts
 import {
   SiNextdotjs,
   SiReact,
@@ -49,6 +49,7 @@ export interface VideoShowcaseItem {
   id: string;
   title: string;
   subtitle: string;
+  duration?: string; // ตั้งเป็น Optional เผื่อไม่ได้ระบุเวลา
   description: string;
   videoUrl: string;
   posterImage: string;
@@ -132,8 +133,8 @@ export const projectsData: ProjectItem[] = [
     id: "cpp-qr-scanner",
     title: "Real-Time QR/Barcode Inventory Scanner",
     category: "System & Hardware",
-    period: "Sep 2026",
-    startDate: "2026-09",
+   period: "Oct 2024 – Nov 2024",       // <-- แก้ไขข้อความวันที่แสดงผลตรงนี้
+    startDate: "2024-10",     // <-- แก้ไขปีและเดือนสำหรับเรียงลำดับตรงนี้
     shortDesc:
       "ระบบสแกนบาร์โค้ดและ QR Code ผ่านกล้องเว็บแคมด้วย C++ และ OpenCV เชื่อมต่อฐานข้อมูล PostgreSQL แบบเวลาจริง",
     fullDesc:
@@ -150,13 +151,14 @@ export const projectsData: ProjectItem[] = [
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
     ],
     githubUrl: "https://github.com/Pongpon01",
+    liveUrl: "https://www.youtube.com/embed/VsqfdWwWiI4?si=PQ3jEvxDIWFAOdN1", // เพิ่ม liveUrl เรียบร้อย
   },
   {
     id: "vms-traffic",
     title: "VMS Smart Traffic Management Dashboard",
     category: "UX/UI & Web",
-    period: "Jun 2026 – Sep 2026",
-    startDate: "2026-06",
+   period: "Jun 2025 – Sep 2025", // ตัวอย่างช่วงเวลาฝึกงาน VMS ในเรซูเม่
+    startDate: "2025-06",
     shortDesc:
       "ออกแบบ User Flow และ Interactive Dashboard สำหรับระบบบริหารจัดการป้ายจราจรอัจฉริยะ (Variable Message Sign)",
     fullDesc:
@@ -187,8 +189,8 @@ export const projectsData: ProjectItem[] = [
     id: "tiangtrong-system",
     title: "TiangTrong Document Management System",
     category: "Full-Stack",
-    period: "Mar 2026 – Aug 2026",
-    startDate: "2026-03",
+   period: "Dec 2025 – Mar 2026", // ตัวอย่างช่วงเวลาฝึกงานเที่ยงตรงในเรซูเม่
+    startDate: "2025-12",
     shortDesc:
       "เว็บแอปพลิเคชันสร้างและจัดการเอกสารทางกฎหมายอัตโนมัติพร้อมระบบ AI ประเมินความเสี่ยงและ Admin Dashboard",
     fullDesc:
@@ -219,8 +221,8 @@ export const projectsData: ProjectItem[] = [
     id: "EQS-systems",
     title: "EQS Office Equipment Disbursement System",
     category: "Full-Stack",
-    period: "Jan 2026 – May 2026",
-    startDate: "2026-01",
+    period: "Jun 2024 – Mar 2025", // ตัวอย่างช่วงเวลาฝึกงาน EQS ในเรซูเม่
+    startDate: "2024-06",
     shortDesc:
       "ระบบเบิกจ่ายและบริหารจัดการครุภัณฑ์/อุปกรณ์สำนักงาน ติดตามสถานะการยืม-คืน รายการซ่อมบำรุง และจัดการผู้ใช้งาน",
     fullDesc:
@@ -250,15 +252,14 @@ export const projectsData: ProjectItem[] = [
   },
 ];
 
+// รองรับลิงก์ YouTube ทั้งแบบ https://youtu.be/... และ https://www.youtube.com/embed/...
 export const videoShowcases: VideoShowcaseItem[] = [
   {
     id: "video-1",
     title: "Full-Stack Web Application & UX/UI Walkthrough",
     subtitle: "System Architecture & Interactive Dashboard Demo",
-    description:
-      "วิดีโอสาธิตการทำงานของระบบเว็บแอปพลิเคชัน ตั้งแต่หน้าผู้ใช้งานทั่วไป หน้าจัดการข้อมูลหลังบ้าน (Admin Dashboard) ไปจนถึงการทำงานแบบ Responsive บนอุปกรณ์ต่างๆ",
-    videoUrl:
-      "https://drive.google.com/file/d/1zHYuANf8Fv_HdvVQiRBMjadjUoYie0vu/preview",
+    description: "วิดีโอสาธิตการทำงานของระบบเว็บแอปพลิเคชัน",
+    videoUrl: "https://www.youtube.com/embed/eSzJBcnNKtc?si=58SfGwlaOzwopxM5",
     posterImage: "/projects/Thiangtrong/Thiangtrong.Home- Desktop.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
   },
@@ -266,10 +267,8 @@ export const videoShowcases: VideoShowcaseItem[] = [
     id: "video-2",
     title: "Real-Time QR Scanner & Database Integration",
     subtitle: "Hardware to PostgreSQL Live Demonstration",
-    description:
-      "สาธิตการสแกน QR Code และ Barcode ผ่านกล้องด้วยโปรแกรม C++ (OpenCV) ที่ส่งข้อมูลเข้าอัปเดตในฐานข้อมูล PostgreSQL และแสดงผลบนหน้าเว็บทันที",
-    videoUrl:
-      "https://drive.google.com/file/d/1E_YVKJAeA9_Ki0KSdWaDhteoRXn0EpBK/preview",
+    description: "สาธิตการสแกน QR Code และ Barcode ผ่านกล้อง",
+    videoUrl: "https://www.youtube.com/embed/VsqfdWwWiI4?si=PQ3jEvxDIWFAOdN1",
     posterImage:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
     tags: ["C++", "OpenCV", "PostgreSQL", "Real-Time"],

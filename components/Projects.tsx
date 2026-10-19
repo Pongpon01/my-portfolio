@@ -1,7 +1,12 @@
-
 // components/Projects.tsx
 "use client";
-import React, { useState, useMemo, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -27,14 +32,47 @@ import {
 
 const categories = ["All", "Full-Stack", "UX/UI & Web", "System & Hardware"];
 
+function getVideoEmbedUrl(url: string): string {
+  // Google Drive
+  if (url.includes("drive.google.com")) {
+    return url.replace(/\/view.*$/, "/preview");
+  }
+
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, "");
+    let videoId: string | null = null;
+
+    if (host === "youtu.be") {
+      videoId = parsed.pathname.split("/").filter(Boolean)[0] ?? null;
+    }
+    else if (host === "youtube.com" || host === "m.youtube.com") {
+      if (parsed.pathname === "/watch") {
+        videoId = parsed.searchParams.get("v");
+      } else if (
+        parsed.pathname.startsWith("/embed/") ||
+        parsed.pathname.startsWith("/shorts/")
+      ) {
+        videoId = parsed.pathname.split("/")[2] ?? null;
+      }
+    }
+
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+  } catch {
+    return url;
+  }
+}
+
 export default function Projects() {
   const [activeTab, setActiveTab] = useState("All");
-  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(
+    null,
+  );
 
   // เรียงลำดับโปรเจกต์จากใหม่ไปเก่า (Newest -> Oldest) ตามค่า startDate ("YYYY-MM")
   const sortedProjects = useMemo(() => {
     return [...projectsData].sort((a, b) =>
-      (b.startDate ?? "").localeCompare(a.startDate ?? "")
+      (b.startDate ?? "").localeCompare(a.startDate ?? ""),
     );
   }, []);
 
@@ -140,9 +178,19 @@ export default function Projects() {
                 <motion.div
                   layout
                   key={project.id}
-                  initial={{ opacity: 0, scale: 0.94, filter: "blur(6px)", y: 15 }}
+                  initial={{
+                    opacity: 0,
+                    scale: 0.94,
+                    filter: "blur(6px)",
+                    y: 15,
+                  }}
                   animate={{ opacity: 1, scale: 1, filter: "blur(0px)", y: 0 }}
-                  exit={{ opacity: 0, scale: 0.94, filter: "blur(6px)", y: -10 }}
+                  exit={{
+                    opacity: 0,
+                    scale: 0.94,
+                    filter: "blur(6px)",
+                    y: -10,
+                  }}
                   transition={{
                     opacity: { duration: 0.25 },
                     filter: { duration: 0.25 },
@@ -176,14 +224,18 @@ export default function Projects() {
                       {/* ช่วงเวลาที่ทำโปรเจกต์ (ขวาบน) */}
                       {project.period && (
                         <span className="absolute top-4 right-4 flex items-center gap-1.5 text-[11px] font-medium px-3 py-1 rounded-full bg-[#040711]/85 backdrop-blur-md border border-white/10 text-slate-200">
-                          <FaRegCalendarAlt className="text-blue-400" size={11} />
+                          <FaRegCalendarAlt
+                            className="text-blue-400"
+                            size={11}
+                          />
                           {project.period}
                         </span>
                       )}
 
                       <div className="pointer-events-none absolute inset-0 bg-blue-950/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-5">
                         <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-slate-950 text-xs font-bold shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                          <FaImages /> ดูรูปภาพและรายละเอียด ({project.gallery.length} รูป)
+                          <FaImages /> ดูรูปภาพและรายละเอียด (
+                          {project.gallery.length} รูป)
                         </span>
                       </div>
                     </div>
@@ -199,7 +251,10 @@ export default function Projects() {
                           </h3>
                           {project.period && (
                             <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 mt-1">
-                              <FaRegCalendarAlt className="text-blue-400/80" size={11} />
+                              <FaRegCalendarAlt
+                                className="text-blue-400/80"
+                                size={11}
+                              />
                               {project.period}
                             </span>
                           )}
@@ -292,7 +347,8 @@ export default function Projects() {
             </span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base mt-3 max-w-2xl">
-            ชมวิดีโอสาธิตการทำงานของระบบจริง การโต้ตอบของผู้ใช้งาน (Interactive UX/UI) และการเชื่อมโยงข้อมูลตั้งแต่หน้าบ้านถึงฐานข้อมูล
+            ชมวิดีโอสาธิตการทำงานของระบบจริง การโต้ตอบของผู้ใช้งาน (Interactive
+            UX/UI) และการเชื่อมโยงข้อมูลตั้งแต่หน้าบ้านถึงฐานข้อมูล
           </p>
         </motion.div>
 
@@ -307,17 +363,13 @@ export default function Projects() {
               className="rounded-2xl bg-[#090e1a] border border-slate-800/90 hover:border-blue-500/40 overflow-hidden shadow-2xl flex flex-col justify-between transition-colors duration-300"
             >
               <div>
-                {/* รองรับทั้ง Google Drive, YouTube และไฟล์ MP4 ทั่วไป */}
+                {/* รองรับทั้ง YouTube (แปลงลิงก์เป็น Embed อัตโนมัติ), Google Drive และไฟล์ MP4 */}
                 <div className="relative aspect-video w-full bg-black border-b border-slate-800">
                   {vid.videoUrl.includes("youtube.com") ||
                   vid.videoUrl.includes("youtu.be") ||
                   vid.videoUrl.includes("drive.google.com") ? (
                     <iframe
-                      src={
-                        vid.videoUrl.includes("drive.google.com")
-                          ? vid.videoUrl.replace(/\/view.*$/, "/preview")
-                          : vid.videoUrl
-                      }
+                      src={getVideoEmbedUrl(vid.videoUrl)}
                       title={vid.title}
                       className="w-full h-full"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
@@ -421,7 +473,7 @@ function ProjectModal({
   const next = useCallback(() => goTo((idx + 1) % total), [goTo, idx, total]);
   const prev = useCallback(
     () => goTo(idx === 0 ? total - 1 : idx - 1),
-    [goTo, idx, total]
+    [goTo, idx, total],
   );
 
   const pickMode = (m: ViewMode) => {
@@ -434,7 +486,8 @@ function ProjectModal({
     setZoomIdx(ratioRef.current > TALL_RATIO ? 1 : 0);
     setFullscreen(true);
   };
-  const zoomIn = () => setZoomIdx((z) => Math.min(z + 1, ZOOM_STEPS.length - 1));
+  const zoomIn = () =>
+    setZoomIdx((z) => Math.min(z + 1, ZOOM_STEPS.length - 1));
   const zoomOut = () => setZoomIdx((z) => Math.max(z - 1, 0));
 
   // ล็อกสกรอลล์พื้นหลัง + โฟกัสปุ่มปิด
@@ -484,7 +537,11 @@ function ProjectModal({
   // เลื่อนภาพย่อให้รูปที่เลือกอยู่กลางแถบ
   useEffect(() => {
     const el = thumbsRef.current?.children[idx] as HTMLElement | undefined;
-    el?.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+    el?.scrollIntoView({
+      inline: "center",
+      block: "nearest",
+      behavior: "smooth",
+    });
   }, [idx]);
 
   const onImgLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -821,7 +878,7 @@ function ProjectModal({
               onNext={next}
               onClose={() => setFullscreen(false)}
             />,
-            document.body
+            document.body,
           )}
       </motion.div>
     </motion.div>
@@ -859,7 +916,9 @@ function FullscreenViewer({
 }) {
   const zoom = ZOOM_STEPS[zoomIdx];
   const areaRef = useRef<HTMLDivElement>(null);
-  const drag = useRef<{ x: number; y: number; sl: number; st: number } | null>(null);
+  const drag = useRef<{ x: number; y: number; sl: number; st: number } | null>(
+    null,
+  );
   const [dragging, setDragging] = useState(false);
 
   // เปลี่ยนรูป -> กลับไปบนสุด
@@ -935,7 +994,12 @@ function FullscreenViewer({
           onPointerDown={(e) => {
             if (zoom === 0 || e.pointerType !== "mouse") return;
             const el = e.currentTarget;
-            drag.current = { x: e.clientX, y: e.clientY, sl: el.scrollLeft, st: el.scrollTop };
+            drag.current = {
+              x: e.clientX,
+              y: e.clientY,
+              sl: el.scrollLeft,
+              st: el.scrollTop,
+            };
             el.setPointerCapture(e.pointerId);
             setDragging(true);
           }}
@@ -964,7 +1028,11 @@ function FullscreenViewer({
             src={src}
             alt={title}
             draggable={false}
-            style={zoom === 0 ? undefined : { width: `${zoom * 100}%`, maxWidth: "none" }}
+            style={
+              zoom === 0
+                ? undefined
+                : { width: `${zoom * 100}%`, maxWidth: "none" }
+            }
             className={`block select-none ${
               zoom === 0
                 ? "max-w-full max-h-full w-auto h-auto object-contain"
