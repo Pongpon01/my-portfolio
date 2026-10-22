@@ -19,7 +19,31 @@ import {
   SiCss,
   SiMui,
   SiVercel,
+  // ไอคอนภาษาและเครื่องมือเพิ่มเติมจากเรซูเม่
+  SiPython,
+  SiPhp,
+  SiC,
+  SiFlutter,
+  SiLaravel,
+  SiMysql,
+  SiRabbitmq,
+  SiDiagramsdotnet,
+  SiGithub,
+  SiJira,
+  SiSap,
+  SiXampp,
+ 
+  SiSocketdotio,
+  
 } from "react-icons/si";
+import {
+  FaJava,
+  FaDatabase,
+  FaServer,
+  FaTasks,
+  FaFileAlt,
+  FaVideo,
+} from "react-icons/fa";
 import { IconType } from "react-icons";
 
 export interface SkillItem {
@@ -65,6 +89,12 @@ export const marqueeRow1: SkillItem[] = [
   { name: "Express", icon: SiExpress, color: "#ffffff" },
   { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
   { name: "Prisma", icon: SiPrisma, color: "#5A67D8" },
+  { name: "Java", icon: FaJava, color: "#ED8B00" },
+  { name: "Python", icon: SiPython, color: "#3776AB" },
+  { name: "PHP", icon: SiPhp, color: "#777BB4" },
+  
+  { name: "Flutter", icon: SiFlutter, color: "#02569B" },
+  { name: "Laravel", icon: SiLaravel, color: "#FF2D20" },
 ];
 
 export const marqueeRow2: SkillItem[] = [
@@ -79,6 +109,14 @@ export const marqueeRow2: SkillItem[] = [
   { name: "Postman", icon: SiPostman, color: "#FF6C37" },
   { name: "Docker", icon: SiDocker, color: "#2496ED" },
   { name: "Vercel", icon: SiVercel, color: "#ffffff" },
+  { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+  { name: "Oracle", icon: FaDatabase, color: "#F80000" },
+  { name: "RabbitMQ", icon: SiRabbitmq, color: "#FF6600" },
+  { name: "Draw.io", icon: SiDiagramsdotnet, color: "#F08705" },
+  { name: "GitHub", icon: SiGithub, color: "#ffffff" },
+  { name: "Jira", icon: SiJira, color: "#0052CC" },
+  { name: "SAP", icon: SiSap, color: "#0FAAFF" },
+  { name: "XAMPP", icon: SiXampp, color: "#FB7A24" },
 ];
 
 export const skillCategories = [
@@ -88,6 +126,10 @@ export const skillCategories = [
     skills: [
       { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
       { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+      { name: "Java", icon: FaJava, color: "#ED8B00" },
+      { name: "Python", icon: SiPython, color: "#3776AB" },
+      { name: "PHP", icon: SiPhp, color: "#777BB4" },
+     
       { name: "C++", icon: SiCplusplus, color: "#00599C" },
       { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
       { name: "CSS3", icon: SiCss, color: "#1572B6" },
@@ -101,7 +143,9 @@ export const skillCategories = [
       { name: "React", icon: SiReact, color: "#61DAFB" },
       { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38B2AC" },
       { name: "Material UI", icon: SiMui, color: "#007FFF" },
+      { name: "Flutter", icon: SiFlutter, color: "#02569B" },
       { name: "Figma", icon: SiFigma, color: "#F24E1E" },
+      { name: "Draw.io", icon: SiDiagramsdotnet, color: "#F08705" },
     ],
   },
   {
@@ -110,8 +154,14 @@ export const skillCategories = [
     skills: [
       { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
       { name: "Express", icon: SiExpress, color: "#ffffff" },
+      { name: "Laravel", icon: SiLaravel, color: "#FF2D20" },
+      { name: "RESTful APIs", icon: FaServer, color: "#38BDF8" },
       { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+      { name: "MySQL", icon: SiMysql, color: "#4479A1" },
+      { name: "Oracle", icon: FaDatabase, color: "#F80000" },
       { name: "Prisma ORM", icon: SiPrisma, color: "#5A67D8" },
+      { name: "RabbitMQ", icon: SiRabbitmq, color: "#FF6600" },
+      { name: "WebSockets", icon: SiSocketdotio, color: "#ffffff" },
     ],
   },
   {
@@ -119,10 +169,17 @@ export const skillCategories = [
     title: "Tools & Integration",
     skills: [
       { name: "Git", icon: SiGit, color: "#F05032" },
+      { name: "GitHub", icon: SiGithub, color: "#ffffff" },
+      { name: "Jira", icon: SiJira, color: "#0052CC" },
+      { name: "Monday", icon: FaTasks, color: "#FF3D57" },
       { name: "Postman", icon: SiPostman, color: "#FF6C37" },
+      { name: "SAP", icon: SiSap, color: "#0FAAFF" },
+      { name: "XAMPP", icon: SiXampp, color: "#FB7A24" },
       { name: "OpenCV", icon: SiOpencv, color: "#5C3EE8" },
       { name: "Docker", icon: SiDocker, color: "#2496ED" },
       { name: "Vercel", icon: SiVercel, color: "#ffffff" },
+      { name: "CapCut", icon: FaVideo, color: "#00F5D4" },
+      { name: "MS Office", icon: FaFileAlt, color: "#D83B01" },
     ],
   },
 ];
@@ -133,8 +190,8 @@ export const projectsData: ProjectItem[] = [
     id: "cpp-qr-scanner",
     title: "Real-Time QR/Barcode Inventory Scanner",
     category: "System & Hardware",
-   period: "Oct 2024 – Nov 2024",       // <-- แก้ไขข้อความวันที่แสดงผลตรงนี้
-    startDate: "2024-10",     // <-- แก้ไขปีและเดือนสำหรับเรียงลำดับตรงนี้
+    period: "Oct 2024 – Nov 2024",
+    startDate: "2024-10",
     shortDesc:
       "ระบบสแกนบาร์โค้ดและ QR Code ผ่านกล้องเว็บแคมด้วย C++ และ OpenCV เชื่อมต่อฐานข้อมูล PostgreSQL แบบเวลาจริง",
     fullDesc:
@@ -151,13 +208,13 @@ export const projectsData: ProjectItem[] = [
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
     ],
     githubUrl: "https://github.com/Pongpon01",
-    liveUrl: "https://www.youtube.com/embed/VsqfdWwWiI4?si=PQ3jEvxDIWFAOdN1", // เพิ่ม liveUrl เรียบร้อย
+    liveUrl: "https://www.youtube.com/embed/VsqfdWwWiI4?si=PQ3jEvxDIWFAOdN1",
   },
   {
     id: "vms-traffic",
     title: "VMS Smart Traffic Management Dashboard",
     category: "UX/UI & Web",
-   period: "Jun 2025 – Sep 2025", // ตัวอย่างช่วงเวลาฝึกงาน VMS ในเรซูเม่
+    period: "Jun 2025 – Sep 2025",
     startDate: "2025-06",
     shortDesc:
       "ออกแบบ User Flow และ Interactive Dashboard สำหรับระบบบริหารจัดการป้ายจราจรอัจฉริยะ (Variable Message Sign)",
@@ -189,7 +246,7 @@ export const projectsData: ProjectItem[] = [
     id: "tiangtrong-system",
     title: "TiangTrong Document Management System",
     category: "Full-Stack",
-   period: "Dec 2025 – Mar 2026", // ตัวอย่างช่วงเวลาฝึกงานเที่ยงตรงในเรซูเม่
+    period: "Dec 2025 – Mar 2026",
     startDate: "2025-12",
     shortDesc:
       "เว็บแอปพลิเคชันสร้างและจัดการเอกสารทางกฎหมายอัตโนมัติพร้อมระบบ AI ประเมินความเสี่ยงและ Admin Dashboard",
@@ -221,7 +278,7 @@ export const projectsData: ProjectItem[] = [
     id: "EQS-systems",
     title: "EQS Office Equipment Disbursement System",
     category: "Full-Stack",
-    period: "Jun 2024 – Mar 2025", // ตัวอย่างช่วงเวลาฝึกงาน EQS ในเรซูเม่
+    period: "Jun 2024 – Mar 2025",
     startDate: "2024-06",
     shortDesc:
       "ระบบเบิกจ่ายและบริหารจัดการครุภัณฑ์/อุปกรณ์สำนักงาน ติดตามสถานะการยืม-คืน รายการซ่อมบำรุง และจัดการผู้ใช้งาน",
@@ -259,7 +316,7 @@ export const videoShowcases: VideoShowcaseItem[] = [
     title: "Full-Stack Web Application & UX/UI Walkthrough",
     subtitle: "System Architecture & Interactive Dashboard Demo",
     description: "วิดีโอสาธิตการทำงานของระบบเว็บแอปพลิเคชัน",
-    videoUrl: "https://www.youtube.com/embed/eSzJBcnNKtc?si=58SfGwlaOzwopxM5",
+    videoUrl: "https://youtu.be/w1JDIk46ZDs?si=qixeBmknmV7YiWSO",
     posterImage: "/projects/Thiangtrong/Thiangtrong.Home- Desktop.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
   },
