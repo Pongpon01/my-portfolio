@@ -316,7 +316,7 @@ export const videoShowcases: VideoShowcaseItem[] = [
     title: "Full-Stack Web Application & UX/UI Walkthrough",
     subtitle: "System Architecture & Interactive Dashboard Demo",
     description: "วิดีโอสาธิตการทำงานของระบบเว็บแอปพลิเคชัน",
-    videoUrl: "https://youtu.be/w1JDIk46ZDs?si=qixeBmknmV7YiWSO",
+    videoUrl: "https://youtu.be/LW0oRBg9zS0?si=snos_VJ3jX9C-rl4",
     posterImage: "/projects/Thiangtrong/Thiangtrong.Home- Desktop.png",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma"],
   },
